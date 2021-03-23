@@ -1,4 +1,4 @@
-package automation;
+package automation.webtest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
