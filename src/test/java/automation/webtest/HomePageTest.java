@@ -20,7 +20,7 @@ public class HomePageTest extends BaseTest {
 
     @Test
     public void selectCity(){
-        selectCityPage.clickBangaloreCity();
+        selectCityPage.clickBangaloreCity().clickStartYourJouney();
     }
 
 }

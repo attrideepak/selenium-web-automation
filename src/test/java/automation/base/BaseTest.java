@@ -26,12 +26,9 @@ public class BaseTest {
 
     @BeforeTest
     @Parameters({"browserName"})
-    public void beforeTest(@Optional(value = "safari") String browserName){
+    public void beforeTest(@Optional(value = "chrome") String browserName){
             driver = createWebDriver.getDriver(browserName);
             driver.manage().window().maximize();
-            driver.get("https://zoomcar.com");
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @AfterTest
