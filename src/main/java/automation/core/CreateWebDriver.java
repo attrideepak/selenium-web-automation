@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
@@ -31,7 +33,12 @@ public class CreateWebDriver {
             return new ChromeDriver(options);
         } else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            return new FirefoxDriver();
+            //System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/src/main/java/resources/logs/logs.txt");
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--disable-infobars");
+            options.setHeadless(true);
+            options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+            return new FirefoxDriver(options);
         } else if (browserName.equalsIgnoreCase("safari")) {
             return new SafariDriver();
         } else {
