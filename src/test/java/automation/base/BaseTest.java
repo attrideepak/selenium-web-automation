@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -29,6 +30,9 @@ public class BaseTest {
     public void beforeTest(@Optional(value = "chrome") String browserName){
             driver = createWebDriver.getDriver(browserName);
             driver.manage().window().maximize();
+            driver.get("https://zoomcar.com");
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
     }
 
     @AfterTest

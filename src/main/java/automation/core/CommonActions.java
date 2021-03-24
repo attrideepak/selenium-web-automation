@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -38,12 +39,12 @@ public class CommonActions {
     }
 
     public void waitForElementToBeClickable(WebElement myElement) {
-            WebDriverWait wait = new WebDriverWait(localWebDriver, 20);
+            WebDriverWait wait = new WebDriverWait(localWebDriver, Duration.ofSeconds(20));
             wait.until(ExpectedConditions.elementToBeClickable(myElement));
     }
 
     public void waitForElementVisibility(WebElement myElement) {
-            WebDriverWait wait = new WebDriverWait(localWebDriver, 20);
+            WebDriverWait wait = new WebDriverWait(localWebDriver, Duration.ofSeconds(20));
             wait.until(ExpectedConditions.visibilityOf(myElement));
     }
 
