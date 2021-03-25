@@ -30,8 +30,8 @@ public class BaseTest {
     public void beforeTest(@Optional(value = "chrome") String browserName){
             driver = createWebDriver.getDriver(browserName);
             driver.manage().window().maximize();
-            driver.get("https://zoomcar.com");
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+           // driver.get("https://zoomcar.com");
+           // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
     }
 
