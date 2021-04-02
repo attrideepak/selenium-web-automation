@@ -1,9 +1,6 @@
 package automation.webtest;
 
 import automation.base.BaseTest;
-import automation.pageobjects.SelectCityPage;
-import org.apache.log4j.Logger;
-import org.jsoup.Connection;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;

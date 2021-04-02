@@ -1,7 +1,6 @@
 package automation.webtest;
 
 import automation.base.BaseTest;
-import automation.pageobjects.SelectCityPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,9 +11,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class PopUpTest extends BaseTest {
+public class AlertTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(PopUpTest.class);
+    private Logger logger = Logger.getLogger(AlertTest.class);
 
 
 

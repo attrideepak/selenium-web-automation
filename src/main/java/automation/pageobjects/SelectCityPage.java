@@ -9,6 +9,7 @@ import org.openqa.selenium.support.pagefactory.FieldDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.function.Function;
 
 public class SelectCityPage {
@@ -19,7 +20,7 @@ public class SelectCityPage {
     public SelectCityPage(WebDriver webDriver){
         localWebDriver = webDriver;
         commonActions = new CommonActions(localWebDriver);
-        wait = new WebDriverWait(localWebDriver, 30);
+        wait = new WebDriverWait(localWebDriver, Duration.ofSeconds(30));
         PageFactory.initElements(localWebDriver, this);
     }
 
@@ -37,7 +38,6 @@ public class SelectCityPage {
     }
 
     public void clickStartYourJouney(){
-        commonActions.takeScreenShot("Button",startYourJourney);
         commonActions.clickElement(startYourJourney);
     }
 }

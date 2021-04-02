@@ -2,7 +2,6 @@ package automation.webtest;
 
 import automation.base.BaseTest;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +12,7 @@ import java.time.Duration;
 
 public class FileUploadTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(PopUpTest.class);
+    private Logger logger = Logger.getLogger(AlertTest.class);
 
 
 

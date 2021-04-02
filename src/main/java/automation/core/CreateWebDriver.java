@@ -16,12 +16,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.SkipException;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 
 public class CreateWebDriver {
     private Logger logger = Logger.getLogger(CreateWebDriver.class);
-
 
     public WebDriver getDriver(String browserName) {
         if (browserName.equalsIgnoreCase("chrome")) {
