@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v89.network.Network;
+import org.openqa.selenium.devtools.v89.network.model.RequestId;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class CaptureHttpRequests {
     private WebDriver driver;
     DevTools devTools;
+    static RequestId requestid;
 
     @BeforeClass
     public void initialiseClass() {
@@ -27,34 +29,28 @@ public class CaptureHttpRequests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
-
+        driver.get("https://www.zoomcar.com/bangalore");
         devTools = ((ChromeDriver) driver).getDevTools();
         devTools.createSession();
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
         devTools.addListener(Network.requestWillBeSent(),
                 entry -> {
-                    if (entry.getRequest().getUrl().contains("https://api.segment.io")) {
-                        System.out.println("Request Method : " + entry.getRequest().getMethod());
-                        System.out.println("Request URI : " + entry.getRequest().getUrl() + "\n");
-                        System.out.println("Request headers:");
-                        entry.getRequest().getHeaders().toJson().forEach((k, v) -> System.out.println((k + ":" + v)));
-                        if (entry.getRequest().getMethod().equalsIgnoreCase("get")) {
-                            System.out.println("Not request body found for get request");
-                        } else {
-                            System.out.println("\n" + "Request Body:");
-                            String postData = entry.getRequest().getPostData().get();
-                            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                            String prettyJsonString = gson.toJson(JsonParser.parseString(postData));
-                            System.out.println(prettyJsonString);
-                        }
-                    }
+                    requestid = entry.getRequestId();
+                    System.out.println("Request Method : " + entry.getRequest().getMethod());
+                    System.out.println("Request URI : " + entry.getRequest().getUrl());
+                    System.out.println("Request headers:");
+                    entry.getRequest().getHeaders().toJson().forEach((k, v) -> System.out.println((k + ":" + v)));
+                    Optional<String> postData = entry.getRequest().getPostData();
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    postData.ifPresentOrElse(p -> System.out.println("Request Body: \n" + gson.toJson(JsonParser.parseString(p)) + "\n"),
+                            () -> System.out.println("Not request body found \n"));;
                 });
     }
 
     @Test
     public void captureNetworkCalls() {
-        driver.get("https://www.zoomcar.com/bangalore");
-        driver.findElement(By.className("search")).click();
+        driver.get("https://www.booking.com");
+        driver.findElement(By.className("bui-button__text")).click();
     }
 
     @AfterClass(alwaysRun = true)
