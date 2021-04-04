@@ -1,7 +1,8 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
 import automation.pageobjects.SelectCityPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -10,13 +11,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class ConsoleLogsTest extends BaseTest {
-    private WebDriver localWebDriver;
+    private WebDriver driver;
     private SelectCityPage selectCityPage;
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
-        selectCityPage = new SelectCityPage(localWebDriver);
+        driver = super.driver;
+        selectCityPage = new SelectCityPage(driver);
        // localWebDriver.get("https://www.zoomcar.com");
     }
 
@@ -31,7 +32,11 @@ public class ConsoleLogsTest extends BaseTest {
                     System.out.println("log: "+logEntry.getText());
                     System.out.println("level: "+logEntry.getLevel());
                 });
-        localWebDriver.get("https://www.zoomcar.com");
-        selectCityPage.clickBangaloreCity().clickStartYourJouney();
+        driver.get("https://www.zoomcar.com/bangalore");
+        driver.findElement(By.className("search")).click();
+        devTools.send(Log.clear());
+        devTools.send(Log.disable());
+
+
     }
 }

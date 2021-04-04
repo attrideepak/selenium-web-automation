@@ -1,7 +1,8 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
 import automation.pageobjects.SelectCityPage;
+import automation.webtest.HomePageTest;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,8 +27,8 @@ public class GeoMockingTest extends BaseTest {
         DevTools devTools = ((ChromeDriver)localWebDriver).getDevTools();
         devTools.createSession();
         devTools.send(Emulation.setGeolocationOverride(
-                Optional.of(35.8235),
-                Optional.of(-78.8256),
+                Optional.of(48.8584),
+                Optional.of(2.2945),
                 Optional.of(100)));
         driver.get("https://mycurrentlocation.net/");
         try {

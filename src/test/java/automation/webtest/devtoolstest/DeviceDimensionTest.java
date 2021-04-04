@@ -1,9 +1,10 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v89.emulation.Emulation;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -29,7 +30,7 @@ public class DeviceDimensionTest extends BaseTest {
             put("mobile", true);
             put("deviceScaleFactor", 50);
         }};
-        ((ChromeDriver)driver).executeCdpCommand("Emulation.setDeviceMetricsOverride", deviceMetrics);
+       ((ChromeDriver)driver).executeCdpCommand("Emulation.setDeviceMetricsOverride", deviceMetrics);
         driver.get("https://www.zoomcar.com"); //set device first and then launch
     }
 }

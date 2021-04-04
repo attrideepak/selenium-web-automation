@@ -1,7 +1,7 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
-import automation.pageobjects.SelectCityPage;
+import automation.webtest.HomePageTest;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,8 +24,8 @@ public class EmulateNetwokSpeedTest extends BaseTest {
     }
 
     @Test
-    public void simulateNetwork(){
-        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+    public void simulateNetwork() {
+        DevTools devTools = ((ChromeDriver) driver).getDevTools();
         devTools.createSession();
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
         devTools.send(Network.emulateNetworkConditions(
@@ -35,6 +35,6 @@ public class EmulateNetwokSpeedTest extends BaseTest {
                 50,
                 Optional.of(ConnectionType.CELLULAR2G)
         ));
-        driver.get("https://www.zoomcar.com"); //simulate network and the launch
+        driver.get("https://www.zoomcar.com"); //simulate network and then launch
     }
 }

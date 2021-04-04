@@ -1,4 +1,4 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
 import automation.pageobjects.SelectCityPage;
@@ -24,7 +24,7 @@ public class PerformanceMetricsTest extends BaseTest {
     public void initialiseClass() {
         localWebDriver = super.driver;
         selectCityPage = new SelectCityPage(localWebDriver);
-        localWebDriver.get("https://www.zoomcar.com");
+        //localWebDriver.get("https://www.zoomcar.com");
     }
 
     @Test
@@ -49,5 +49,7 @@ public class PerformanceMetricsTest extends BaseTest {
 
         metricsToCheck.forEach( metric -> System.out.println(metric +
                 " is : " + metrics.get(metricNames.indexOf(metric)).getValue()));
+      // metrics.forEach(metric-> System.out.println(metric.getName() +" : "+ metric.getValue() ));
+
     }
 }

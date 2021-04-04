@@ -1,4 +1,4 @@
-package automation.webtest;
+package automation.webtest.devtoolstest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,9 +29,12 @@ public class CaptureHttpRequests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
-        driver.get("https://www.zoomcar.com/bangalore");
         devTools = ((ChromeDriver) driver).getDevTools();
         devTools.createSession();
+    }
+
+    @Test
+    public void captureNetworkCalls() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
         devTools.addListener(Network.requestWillBeSent(),
                 entry -> {
@@ -43,12 +46,9 @@ public class CaptureHttpRequests {
                     Optional<String> postData = entry.getRequest().getPostData();
                     Gson gson = new GsonBuilder().setPrettyPrinting().create();
                     postData.ifPresentOrElse(p -> System.out.println("Request Body: \n" + gson.toJson(JsonParser.parseString(p)) + "\n"),
-                            () -> System.out.println("Not request body found \n"));;
-                });
-    }
+                            () -> System.out.println("Not request body found \n"));
 
-    @Test
-    public void captureNetworkCalls() {
+                });
         driver.get("https://www.booking.com");
         driver.findElement(By.className("bui-button__text")).click();
     }
