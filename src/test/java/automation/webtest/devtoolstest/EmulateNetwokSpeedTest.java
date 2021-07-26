@@ -1,7 +1,7 @@
 package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
-import automation.webtest.HomePageTest;
+import automation.webtest.LoginTest;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,17 +15,17 @@ import java.util.Optional;
 
 public class EmulateNetwokSpeedTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(HomePageTest.class);
+    private Logger logger = Logger.getLogger(LoginTest.class);
 
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = super.threadLocalDriver;
     }
 
     @Test
     public void simulateNetwork() {
-        DevTools devTools = ((ChromeDriver) driver).getDevTools();
+        DevTools devTools = ((ChromeDriver) threadLocalDriver).getDevTools();
         devTools.createSession();
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
         devTools.send(Network.emulateNetworkConditions(
@@ -35,6 +35,6 @@ public class EmulateNetwokSpeedTest extends BaseTest {
                 50,
                 Optional.of(ConnectionType.CELLULAR2G)
         ));
-        driver.get("https://www.zoomcar.com"); //simulate network and then launch
+        threadLocalDriver.get("https://www.zoomcar.com"); //simulate network and then launch
     }
 }

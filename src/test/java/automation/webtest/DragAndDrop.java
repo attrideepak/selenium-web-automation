@@ -15,7 +15,7 @@ public class DragAndDrop extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
          localWebDriver.get("https://jqueryui.com/droppable/");
     }
 

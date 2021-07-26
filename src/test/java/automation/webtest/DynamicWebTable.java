@@ -15,7 +15,7 @@ public class DynamicWebTable extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
         localWebDriver.get("https://ui.cogmento.com/");
     }
 
@@ -57,7 +57,7 @@ public class DynamicWebTable extends BaseTest {
         WebElement element = localWebDriver.findElement(By.xpath("//a[contains(text(),'alpha singh')]/parent::td/preceding-sibling::td/div//input[@class='hidden']"));
 //        Actions actions = new Actions(localWebDriver);
 //        actions.moveToElement(element).click().perform();
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        JavascriptExecutor jse = (JavascriptExecutor)threadLocalDriver;
         jse.executeScript("arguments[0].click()", element);
         Thread.sleep(5000);
 

@@ -22,14 +22,14 @@ public class PerformanceMetricsTest extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
         selectCityPage = new SelectCityPage(localWebDriver);
         //localWebDriver.get("https://www.zoomcar.com");
     }
 
     @Test
     public void getPerformanceMetrics(){
-        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        DevTools devTools = ((ChromeDriver)threadLocalDriver).getDevTools();
         devTools.createSession();
         devTools.send(Performance.enable(Optional.empty()));
 

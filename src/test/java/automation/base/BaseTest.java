@@ -1,42 +1,42 @@
 package automation.base;
 
 import automation.core.CreateWebDriver;
+import automation.core.LocalDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 
 public class BaseTest {
 
-    public WebDriver driver = null;
-    public WebDriverWait wait;
-    public CreateWebDriver createWebDriver = new CreateWebDriver();
+    private WebDriver driver = null;
+    private CreateWebDriver createWebDriver = new CreateWebDriver();
     private Logger logger = Logger.getLogger(BaseTest.class);
+    public WebDriver threadLocalDriver = null;
 
-
-
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     @Parameters({"browserName"})
-    public void beforeTest(@Optional(value = "chrome") String browserName){
-            driver = createWebDriver.getDriver(browserName);
-            driver.manage().window().maximize();
-           // driver.get("https://zoomcar.com");
-           // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+    public void beforeTest(@Optional(value = "chrome") String browserName) {
+        driver = createWebDriver.getDriver(browserName);
+        LocalDriverManager.setWebDriver(driver);
+        //threadLocalDriver = LocalDriverManager.getDriver();
+        LocalDriverManager.getDriver().manage().window().maximize();
+        LocalDriverManager.getDriver().get("https://www.zoomcar.com/bangalore/");
+        LocalDriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
     }
 
-    @AfterTest
-    public void afterTest(){
-            driver.quit();
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        if (LocalDriverManager.getDriver() != null) {
+            LocalDriverManager.getDriver().quit();
+            LocalDriverManager.removeWebDriver();
+        }
     }
 }

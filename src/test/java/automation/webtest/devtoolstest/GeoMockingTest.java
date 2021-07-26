@@ -1,8 +1,7 @@
 package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
-import automation.pageobjects.SelectCityPage;
-import automation.webtest.HomePageTest;
+import automation.webtest.LoginTest;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,11 +14,11 @@ import java.util.Optional;
 
 public class GeoMockingTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(HomePageTest.class);
+    private Logger logger = Logger.getLogger(LoginTest.class);
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
     }
 
     @Test
@@ -30,7 +29,7 @@ public class GeoMockingTest extends BaseTest {
                 Optional.of(48.8584),
                 Optional.of(2.2945),
                 Optional.of(100)));
-        driver.get("https://mycurrentlocation.net/");
+        threadLocalDriver.get("https://mycurrentlocation.net/");
         try {
             Thread.sleep(30000);
         } catch (InterruptedException e) {

@@ -19,7 +19,7 @@ public class AlertTest extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
         localWebDriver.get("http://register.rediff.com/register/register.php?FormName=user_details");
         localWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }

@@ -16,12 +16,12 @@ public class DeviceDimensionTest extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = super.threadLocalDriver;
     }
 
     @Test
     public void simulateDeviceDimensions(){
-        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        DevTools devTools = ((ChromeDriver)threadLocalDriver).getDevTools();
         devTools.createSession();
         Map deviceMetrics = new HashMap()
         {{
@@ -30,7 +30,7 @@ public class DeviceDimensionTest extends BaseTest {
             put("mobile", true);
             put("deviceScaleFactor", 50);
         }};
-       ((ChromeDriver)driver).executeCdpCommand("Emulation.setDeviceMetricsOverride", deviceMetrics);
-        driver.get("https://www.zoomcar.com"); //set device first and then launch
+       ((ChromeDriver)threadLocalDriver).executeCdpCommand("Emulation.setDeviceMetricsOverride", deviceMetrics);
+        threadLocalDriver.get("https://www.zoomcar.com"); //set device first and then launch
     }
 }

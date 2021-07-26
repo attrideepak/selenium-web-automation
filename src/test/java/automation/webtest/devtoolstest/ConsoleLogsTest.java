@@ -16,7 +16,7 @@ public class ConsoleLogsTest extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        driver = super.driver;
+       // driver = super.driver;
         selectCityPage = new SelectCityPage(driver);
        // localWebDriver.get("https://www.zoomcar.com");
     }

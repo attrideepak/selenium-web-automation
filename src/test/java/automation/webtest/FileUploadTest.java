@@ -18,7 +18,7 @@ public class FileUploadTest extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = super.driver;
+        localWebDriver = threadLocalDriver;
         localWebDriver.get("https://html.com/input-type-file/");
         localWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }

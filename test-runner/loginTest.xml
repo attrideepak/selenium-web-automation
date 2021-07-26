@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Parallel run" parallel="tests" thread-count="2">
+    <test  name="Correct Login Test">
+        <classes>
+            <class name="automation.webtest.LoginTest"/>
+        </classes>
+    </test>
+    <test  name="Incorrect Login Test">
+        <parameter name="browserName" value="firefox"></parameter>
+        <classes>
+            <class name="automation.webtest.IncorrectLoginTest"/>
+        </classes>
+    </test>
+</suite>
