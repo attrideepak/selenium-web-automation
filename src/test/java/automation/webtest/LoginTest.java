@@ -1,14 +1,16 @@
 package automation.webtest;
 
 import automation.base.BaseTest;
-import automation.core.LocalDriverManager;
+import automation.core.annotations.ExtentReportAnnotation;
+import automation.core.driver.LocalDriverManager;
 import automation.pageobjects.HomePage;
-import automation.pageobjects.SelectCityPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class LoginTest extends BaseTest {
     private  static WebDriver localWebDriver;
@@ -22,11 +24,12 @@ public class LoginTest extends BaseTest {
         homePage = new HomePage(localWebDriver);
     }
 
-    @Test(priority = 1)
-    public void loginWithPhoneNumber(){
+    @ExtentReportAnnotation(author = {"alpha"},category = {"sanity"})
+    @Test(description = "User login sucessfully")
+    public void loginWithPhoneNumber() throws IOException {
         System.out.println("The thread ID for loginWithPhoneNumber is "+ Thread.currentThread().getId());
         System.out.println("Hashcode of webDriver instance = " + localWebDriver.hashCode());
-        String userName = homePage.clickLoginButton().enterPhoneNumber("********").enterPassword("******").getUserName();
-        Assert.assertEquals(userName,"Deepak","User name does not match");
+        String userName = homePage.clickLoginButton().enterPhoneNumber("*******").enterPassword("******").getUserName();
+        Assert.assertEquals(userName,"hhjhkhkh","User name does not match");
     }
 }

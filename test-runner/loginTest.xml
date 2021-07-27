@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Parallel run" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="automation.core.extentreport.ExtentReportListner"/>
+    </listeners>
     <test  name="Correct Login Test">
+        <parameter name="browserName" value="chrome"></parameter>
         <classes>
             <class name="automation.webtest.LoginTest"/>
         </classes>

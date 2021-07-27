@@ -1,0 +1,13 @@
+{
+  "theme": "STANDARD",
+  "encoding": "utf-8",
+  "protocol": "HTTPS",
+  "timelineEnabled": false,
+  "offlineMode": true,
+  "thumbnailForBase64": false,
+  "documentTitle": "ExtentReportsDemo",
+  "reportName": "Sanity",
+  "timeStampFormat": "MMM dd, yyyy HH:mm:ss a",
+  "js": "img src='./Users/Aeepakattri/Desktop/selenium-web-automation/src/main/java/resources/logo.jpeg'",
+  "css": "img src='./Users/Aeepakattri/Desktop/selenium-web-automation/src/main/java/resources/logo.jpeg'"
+}

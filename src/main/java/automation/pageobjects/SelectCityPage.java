@@ -1,6 +1,6 @@
 package automation.pageobjects;
 
-import automation.core.CommonActions;
+import automation.core.utils.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

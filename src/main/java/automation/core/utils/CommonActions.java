@@ -1,8 +1,9 @@
-package automation.core;
+package automation.core.utils;
 
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,16 +13,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v89.network.Network;
 import org.openqa.selenium.devtools.v89.network.model.Headers;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.devtools.DevTools;
 
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -131,6 +127,12 @@ public class CommonActions {
             logger.error("attachment error");
         }
     }
+
+    public String getBase64Image() throws IOException {
+        return ((TakesScreenshot) localWebDriver).getScreenshotAs(OutputType.BASE64);
+    }
+
+
 
     public void basicAuthentication(String userName,String password){
         DevTools devTools = ((ChromeDriver)localWebDriver).getDevTools();

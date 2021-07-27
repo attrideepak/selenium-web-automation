@@ -1,4 +1,4 @@
-package automation.core;
+package automation.core.utils;
 
 import org.apache.log4j.Logger;
 
