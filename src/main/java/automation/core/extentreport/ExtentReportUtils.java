@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ExtentReportUtils {
 
-    static String configPath = System.getProperty("user.dir") + "/src/main/java/resources/extent-report-config";
+    static String configPath = System.getProperty("user.dir") + "/src/main/java/automation/configs/extent-report-config";
     static String reportsPath = "target/spark/spark.html";
 
     private static ExtentReports extentReport = new ExtentReports();
@@ -38,6 +38,7 @@ public class ExtentReportUtils {
                 e.getMessage();
                 System.out.println("No report found, check report name and path!!!");
             }
+            ExtentReportManager.removeExtentThread();
         }
     }
 
@@ -61,9 +62,4 @@ public class ExtentReportUtils {
     public static void setSystemInfo(String browserName){
         extentReport.setSystemInfo("Browser",browserName);
     }
-
-//    public static void addbrowser(String browser){
-//        ExtentReportManager.getExtentTest().assignDevice(browser);
-//    }
-
 }

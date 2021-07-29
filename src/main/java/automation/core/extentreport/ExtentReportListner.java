@@ -4,10 +4,9 @@ import automation.core.annotations.ExtentReportAnnotation;
 
 import com.aventstack.extentreports.Status;
 import org.testng.*;
-import org.testng.annotations.Parameters;
 
 import java.io.IOException;
-import java.util.Arrays;
+
 
 public class ExtentReportListner implements ISuiteListener, ITestListener {
 

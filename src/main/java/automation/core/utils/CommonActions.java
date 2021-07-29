@@ -132,8 +132,6 @@ public class CommonActions {
         return ((TakesScreenshot) localWebDriver).getScreenshotAs(OutputType.BASE64);
     }
 
-
-
     public void basicAuthentication(String userName,String password){
         DevTools devTools = ((ChromeDriver)localWebDriver).getDevTools();
         devTools.createSession();

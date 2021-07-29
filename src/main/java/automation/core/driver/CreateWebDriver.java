@@ -15,10 +15,10 @@ import org.testng.SkipException;
 public class CreateWebDriver {
     private Logger logger = Logger.getLogger(CreateWebDriver.class);
 
+
     public WebDriver getDriver(String browserName) {
         WebDriver driver = null;
         if (browserName.equalsIgnoreCase("chrome")) {
-           // System.setProperty("webdriver.chrome.verboseLogging", "false");
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--incognito");
@@ -30,11 +30,9 @@ public class CreateWebDriver {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--disable-infobars");
             options.addArguments("-private");
-            //options.setHeadless(true);
-            //options.setLogLevel(FirefoxDriverLogLevel.TRACE);
-            driver =  new FirefoxDriver(options);
+            driver = new FirefoxDriver(options);
             return driver;
-        } else if(browserName.equalsIgnoreCase("edge")){
+        } else if (browserName.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
             EdgeOptions options = new EdgeOptions();
             driver = new EdgeDriver(options);
