@@ -24,7 +24,8 @@ public class ExtentReportUtils {
     static final File conf = new File(configPath);
 
     public static void setupReports() throws IOException {
-            ExtentSparkReporter spark = new ExtentSparkReporter(reportsPath).viewConfigurer().viewOrder().as(new ViewName[]{ViewName.DASHBOARD,ViewName.TEST,ViewName.CATEGORY}).apply();
+            ExtentSparkReporter spark = new ExtentSparkReporter(reportsPath).viewConfigurer()
+                    .viewOrder().as(new ViewName[]{ViewName.DASHBOARD,ViewName.TEST,ViewName.CATEGORY,ViewName.DEVICE}).apply();
             spark.loadJSONConfig(conf);
             extentReport.attachReporter(spark);
     }

@@ -97,14 +97,14 @@ public class CommonActions {
     /**
      * Takes screenshot of an element
      * @param name
-     * @param ekement
+     * @param element
      */
-    public void takeScreenShot(String name, WebElement ekement) {
+    public void takeScreenShot(String name, WebElement element) {
         logger.info("taking screenshot!");
 
         File scrFile;
         try {
-            scrFile = ekement.getScreenshotAs(OutputType.FILE);
+            scrFile = element.getScreenshotAs(OutputType.FILE);
         } catch (Exception e) {
             logger.error(e.getMessage());
             logger.error(e.getStackTrace());

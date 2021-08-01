@@ -55,18 +55,18 @@ public class HomePage {
     }
 
     public HomePage enterPhoneNumber(String phoneNumber) throws IOException {
+        //attach image to edxtent report
         ExtentReportManager.getExtentTest().info("phone number entered and next clicked", MediaEntityBuilder.createScreenCaptureFromBase64String(commonActions.getBase64Image()).build());
         commonActions.enterText(phoneTextBox,phoneNumber);
         commonActions.clickElement(nextButton);
-        commonActions.takeScreenShot("After entering phone number");
         return this;
     }
 
     public HomePage enterPassword(String password){
         ExtentReportManager.getExtentTest().info("password entered and next clicked");
+        commonActions.clickElement(passwordTextBox);
         commonActions.enterText(passwordTextBox,password);
         commonActions.clickElement(nextButton);
-        commonActions.takeScreenShot("Entering Password");
         return this;
     }
 

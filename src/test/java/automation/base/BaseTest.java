@@ -3,6 +3,7 @@ package automation.base;
 import automation.core.driver.CreateWebDriver;
 import automation.core.driver.LocalDriverManager;
 import automation.core.extentreport.ExtentReportManager;
+import automation.core.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -18,6 +19,8 @@ public class BaseTest {
     private CreateWebDriver createWebDriver = new CreateWebDriver();
     private Logger logger = Logger.getLogger(BaseTest.class);
     public WebDriver threadLocalDriver = null;
+    String filePath = System.getProperty("user.dir") + "/src/main/resources/runner";
+    String value =  PropertyUtils.getProperty(filePath,"mode");
 
     @BeforeTest(alwaysRun = true)
     @Parameters({"browserName"})

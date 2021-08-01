@@ -1,6 +1,7 @@
 package automation.webtest;
 
 import automation.base.BaseTest;
+import automation.core.driver.LocalDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class DynamicWebTable extends BaseTest {
 
     @BeforeClass
     public void initialiseClass() {
-        localWebDriver = threadLocalDriver;
+        localWebDriver = LocalDriverManager.getDriver();
         localWebDriver.get("https://ui.cogmento.com/");
     }
 
