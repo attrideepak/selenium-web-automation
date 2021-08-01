@@ -30,7 +30,7 @@ public class IncorrectLoginTest extends BaseTest {
     public void loginWithIncorrectPassword() throws IOException {
         System.out.println("The thread ID for loginWithPhoneNumber is "+ Thread.currentThread().getId());
         System.out.println("Hashcode of webDriver instance = " + localWebDriver.hashCode());
-        String userName = homePage.clickLoginButton().enterPhoneNumber("7769954301").enterPassword("dfdfdfggf").getErrortext();
+        String userName = homePage.clickLoginButton().enterPhoneNumber("******").enterPassword("dfdfdfggf").getErrortext();
         Assert.assertEquals(userName,"Incorrect Password","User name does not match");
     }
 }
