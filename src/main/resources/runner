@@ -1,2 +1,3 @@
 #local or remote
-mode=remote
+mode=local
+#allure or extent

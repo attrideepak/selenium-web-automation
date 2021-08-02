@@ -2,6 +2,8 @@ package automation.core.extentreport;
 
 import automation.core.annotations.ExtentReportAnnotation;
 
+import automation.core.driver.LocalDriverManager;
+import automation.core.utils.CommonActions;
 import com.aventstack.extentreports.Status;
 import org.testng.*;
 

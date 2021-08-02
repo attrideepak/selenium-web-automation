@@ -2,7 +2,8 @@ package automation.core.driver;
 
 import automation.core.utils.PropertyUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,7 +25,7 @@ public final class DriverFactory {
 
     private DriverFactory(){};
 
-    private static Logger logger = Logger.getLogger(CreateWebDriver.class);
+    private static Logger logger = LogManager.getLogger(CreateWebDriver.class);
     private static String filePath = System.getProperty("user.dir") + "/src/main/resources/runner";
     private static String mode =  PropertyUtils.getProperty(filePath,"mode");
 

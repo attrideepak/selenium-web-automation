@@ -3,6 +3,7 @@
 <suite name="Parallel run" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="automation.core.extentreport.ExtentReportListner"/>
+        <listener class-name="automation.core.allurelistener.AllureListener"/>
     </listeners>
     <test  name="Correct Login Test">
         <parameter name="browserName" value="chrome"></parameter>

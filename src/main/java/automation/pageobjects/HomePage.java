@@ -1,12 +1,13 @@
 package automation.pageobjects;
 
 import automation.core.extentreport.ExtentReportManager;
-import automation.core.extentreport.ExtentReportUtils;
 import automation.core.utils.CommonActions;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,11 +19,12 @@ public class HomePage {
     private WebDriver localWebDriver;
     private CommonActions commonActions;
 
-    public HomePage(WebDriver webDriver){
+    public HomePage(WebDriver webDriver) {
         localWebDriver = webDriver;
         commonActions = new CommonActions(localWebDriver);
         PageFactory.initElements(localWebDriver, this);
     }
+
     //<span>LOGIN</span>
     @FindBy(xpath = "//div[@class='user-bar']/span[2]")
     private WebElement loginButton;
@@ -38,44 +40,78 @@ public class HomePage {
     @FindBy(xpath = "//img[contains(@src,'next-icon')]")
     private WebElement nextButton;
 
-   //<span>Deepak</span>
+    //<span>Deepak</span>
     @FindBy(xpath = "//div[@class='user-details']/span")
     private WebElement userName;
 
     @FindBy(xpath = "//p[@class='error']")
     private WebElement incorrectPassword;
 
+    @FindBy(xpath = "//div[@class = 'log-out']")
+    private WebElement logOut;
 
-    public HomePage clickLoginButton(){
+    @FindBy(xpath = "//div[@class = 'user-details']")
+    private WebElement userDetails;
+
+    @FindBy(xpath = "//div[@class='user-bar']/span[1]")
+    private WebElement signUpButton;
+
+    @FindBy(xpath = "//button[@class = 'login-btn google-login']")
+    private WebElement googleButton;
+
+
+    public HomePage clickLoginButton() {
         commonActions.waitForElementToBeClickable(loginButton);
         ExtentReportManager.getExtentTest().info(MarkupHelper.createLabel("Login Button Clicked", ExtentColor.BLUE));
         commonActions.clickElement(loginButton);
-        commonActions.takeScreenShot("Login Page");
         return this;
     }
 
     public HomePage enterPhoneNumber(String phoneNumber) throws IOException {
-        //attach image to edxtent report
+        //attach image to extent report
         ExtentReportManager.getExtentTest().info("phone number entered and next clicked", MediaEntityBuilder.createScreenCaptureFromBase64String(commonActions.getBase64Image()).build());
-        commonActions.enterText(phoneTextBox,phoneNumber);
+        commonActions.enterText(phoneTextBox, phoneNumber);
         commonActions.clickElement(nextButton);
         return this;
     }
 
-    public HomePage enterPassword(String password){
+    public HomePage enterPassword(String password) {
         ExtentReportManager.getExtentTest().info("password entered and next clicked");
         commonActions.clickElement(passwordTextBox);
-        commonActions.enterText(passwordTextBox,password);
+        commonActions.enterText(passwordTextBox, password);
         commonActions.clickElement(nextButton);
         return this;
     }
 
-    public String getUserName(){
+    public String getUserName() {
         return commonActions.getText(userName);
     }
 
-    public String getErrortext(){
+    public String getErrortext() {
         return commonActions.getText(incorrectPassword);
+    }
+
+    public HomePage logout() {
+        ExtentReportManager.getExtentTest().info(MarkupHelper.createLabel("User details is clicked", ExtentColor.BLUE));
+        commonActions.clickElement(userDetails);
+        ExtentReportManager.getExtentTest().info(MarkupHelper.createLabel("logOut is clicked", ExtentColor.BLUE));
+        commonActions.clickElement(logOut);
+        return this;
+    }
+
+    public String getLoginText() {
+        String logintext = commonActions.getText(loginButton);
+        System.out.println(logintext);
+        return logintext;
+    }
+
+    public HomePage clickSignUp() {
+        commonActions.clickElement(signUpButton);
+        return this;
+    }
+
+    public String getGoogleText() {
+        return commonActions.getText(googleButton);
     }
 
 }

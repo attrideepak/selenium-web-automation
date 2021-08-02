@@ -45,8 +45,8 @@ public class CaptureHttpRequests {
                     entry.getRequest().getHeaders().toJson().forEach((k, v) -> System.out.println((k + ":" + v)));
                     Optional<String> postData = entry.getRequest().getPostData();
                     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                    postData.ifPresentOrElse(p -> System.out.println("Request Body: \n" + gson.toJson(JsonParser.parseString(p)) + "\n"),
-                            () -> System.out.println("Not request body found \n"));
+//                    postData.ifPresentOrElse(p -> System.out.println("Request Body: \n" + gson.toJson(JsonParser.parseString(p)) + "\n"),
+//                            () -> System.out.println("Not request body found \n"));
 
                 });
         driver.get("https://www.booking.com");

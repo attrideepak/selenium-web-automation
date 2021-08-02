@@ -1,10 +1,12 @@
 package automation.core.utils;
 
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +30,7 @@ import java.util.Optional;
 
 public class CommonActions {
     private WebDriver localWebDriver;
-    private static Logger logger = Logger.getLogger(CommonActions.class);
+    private static Logger logger = LogManager.getLogger(CommonActions.class);
 
     public CommonActions(WebDriver localWebDriver) {
         this.localWebDriver = localWebDriver;
@@ -62,6 +64,23 @@ public class CommonActions {
     }
 
     /**
+     * This method is used to take screenshot and attach to allure report
+     *
+     * @return
+     */
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] takeScreenShot() {
+        logger.info("taking screenshot!");
+        try {
+            return ((TakesScreenshot) localWebDriver).getScreenshotAs(OutputType.BYTES);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            logger.error(e.getStackTrace().toString());
+            return null;
+        }
+    }
+
+    /**
      * Takes screenshot of the entire page
      * @param name
      */
@@ -88,7 +107,7 @@ public class CommonActions {
         }
         Path content = Paths.get(fileName);
         try (InputStream is = Files.newInputStream(content)) {
-            // Allure.addAttachment("Failed Test Screenshot - " + fileName.split(path)[1], is);
+             Allure.addAttachment("Failed Test Screenshot - " + fileName.split(path)[1], is);
         } catch (IOException e) {
             logger.error("attachment error");
         }
@@ -122,13 +141,17 @@ public class CommonActions {
         }
         Path content = Paths.get(fileName);
         try (InputStream is = Files.newInputStream(content)) {
-            // Allure.addAttachment("Failed Test Screenshot - " + fileName.split(path)[1], is);
+             Allure.addAttachment("Failed Test Screenshot - " + fileName.split(path)[1], is);
         } catch (IOException e) {
             logger.error("attachment error");
         }
     }
 
-    public String getBase64Image() throws IOException {
+    /**
+     * Add base64 image to extent report
+     * @return
+     */
+    public String getBase64Image(){
         return ((TakesScreenshot) localWebDriver).getScreenshotAs(OutputType.BASE64);
     }
 

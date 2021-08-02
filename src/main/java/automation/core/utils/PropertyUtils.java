@@ -1,6 +1,7 @@
 package automation.core.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import java.io.FileInputStream;
@@ -12,7 +13,7 @@ import java.util.Properties;
  * <p>This class is used for reading property values.
  */
 public class PropertyUtils {
-    private static Logger logger = Logger.getLogger(PropertyUtils.class);
+    private static Logger logger = LogManager.getLogger(PropertyUtils.class);
 
     public static String getProperty(String filePath,String propertyKey) {
         String propertyValue =  initializePropertiesFiles(filePath).getProperty(propertyKey.trim());

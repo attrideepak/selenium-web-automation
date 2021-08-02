@@ -1,8 +1,6 @@
 package automation.webtest.devtoolstest;
 
 import automation.base.BaseTest;
-import automation.webtest.LoginTest;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -14,7 +12,7 @@ import java.util.Optional;
 
 public class GeoMockingTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(LoginTest.class);
+
 
     @BeforeClass
     public void initialiseClass() {

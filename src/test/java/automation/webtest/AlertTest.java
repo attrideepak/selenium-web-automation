@@ -1,7 +1,6 @@
 package automation.webtest;
 
 import automation.base.BaseTest;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +12,7 @@ import java.time.Duration;
 
 public class AlertTest extends BaseTest {
     private WebDriver localWebDriver;
-    private Logger logger = Logger.getLogger(AlertTest.class);
+
 
 
 
